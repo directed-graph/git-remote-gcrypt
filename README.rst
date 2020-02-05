@@ -95,6 +95,10 @@ Environment variables
 *GCRYPT_FULL_REPACK*
     When set (to anything), this environment variable forces a full repack when pushing.
 
+*GCRYPT_RSYNC_PUT_FLAGS*
+    Flags set in this environment variable will be passed to `rsync`
+    when uploading to a remote with the `rsync://` backend.
+
 Examples
 ========
 

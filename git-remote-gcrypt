@@ -249,7 +249,7 @@ PUT()
 		curl -s -S -k --ftp-create-dirs -T "$3" "$1/$2"
 	elif isurl rsync "$1"
 	then
-		rsync -I -W "$3" "${1#rsync://}"/"$2" >&2
+		rsync ${GCRYPT_RSYNC_PUT_FLAGS} -I -W "$3" "${1#rsync://}"/"$2" >&2
 	elif isurl rclone "$1"
 	then
 		rclone copyto "$3" "${1#rclone://}"/"$2" >&2
@@ -280,7 +280,8 @@ PUTREPO()
 		:
 	elif isurl rsync "$1"
 	then
-		rsync -q -r --exclude='*' "$Localdir/" "${1#rsync://}" >&2
+		rsync ${GCRYPT_RSYNC_PUT_FLAGS} -q -r --exclude='*' \
+			"$Localdir/" "${1#rsync://}" >&2
 	elif isurl rclone "$1"
 	then
 		rclone mkdir "${1#rclone://}" >&2
